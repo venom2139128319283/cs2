@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BoxShadow – CS:GO Best Players</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  /* NOTE: image URLs are temporary Figma export links (valid ~7 days).
+     Download them and replace with local paths for permanent use. */
+  :root {
+    --img-hero:     url("https://www.figma.com/api/mcp/asset/495c3162-7076-420f-b0ae-a6df608b8694.png");
+    --img-logo:     url("https://www.figma.com/api/mcp/asset/ab3c9a13-abef-4325-8124-ab14be29d709.png");
+    --img-play:     url("https://www.figma.com/api/mcp/asset/511bc139-36d7-4f08-9439-5d5f8ace5c91.png");
+    --img-simple:   url("https://www.figma.com/api/mcp/asset/e31fe062-cb81-4adf-800d-39717e23968c.png");
+    --img-zywoo:    url("https://www.figma.com/api/mcp/asset/34a7a1d2-3fc4-4a9f-bf3a-900732d00f58.png");
+    --img-niko:     url("https://www.figma.com/api/mcp/asset/8602ae31-f3e8-4311-958a-5ca3c66c27a0.png");
+    --img-news:     url("https://www.figma.com/api/mcp/asset/949069dd-88ed-4536-a039-294e7cd99007.png");
+    --img-footer:   url("https://www.figma.com/api/mcp/asset/afd2c19d-d84e-4bf7-a3c5-e20027ad70ef.png");
+    --img-badge:    url("https://www.figma.com/api/mcp/asset/2ab16bea-e3c9-47f9-948d-96ace402af17.png");
+    --img-telegram: url("https://www.figma.com/api/mcp/asset/79052413-e9c7-4826-b128-4853d770dce1.svg");
+
+    --yellow: #ffc611;
+    --amber:  #ffc200;
+    --grey:   #5a5555;
+    --card:   #1f1f1f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #fff;
+    font-family: "Roboto", sans-serif;
+    overflow-x: auto;
+  }
+
+  /* fixed 1440 x 2215 stage, same as the Figma frame */
+  .stage {
+    position: relative;
+    width: 1440px;
+    height: 2215px;
+    margin: 0 auto;
+    background: #fff;
+    overflow: hidden;
+  }
+  .stage > * { position: absolute; }
+
+  .img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    left: 0; top: 0; width: 1440px; height: 1024px;
+    background-image: var(--img-hero);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+  }
+  .logo { left: 52px; top: 30px; width: 50px; height: 50px; background-image: var(--img-logo); }
+
+  /* PLAY FOR FREE button */
+  .play {
+    left: 170px; top: 30px; width: 243px; height: 50px;
+    background: rgba(0, 159, 245, .71);
+    border-radius: 10px;
+    box-shadow: 0 4px 4px #dad3ff;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .play:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 12px #dad3ff; }
+  /* icon (image 4) flipped vertically with transform */
+  .play::before {
+    content: "";
+    position: absolute; left: 19px; top: 9px; width: 32px; height: 32px;
+    background: var(--img-play) center / cover no-repeat;
+    transform: scaleY(-1);
+  }
+  .play span {
+    position: absolute; left: 72px; top: 14px;
+    font-weight: 600; font-size: 20px; line-height: normal; color: #fff;
+    white-space: nowrap;
+  }
+
+  .monthly {
+    left: 448px; top: 44px;
+    font-weight: 700; font-size: 20px; line-height: normal; color: #d5d5d6;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, .88);
+    white-space: nowrap;
+  }
+   .lang {
+    left: 1184px; top: 62px;
+    font-weight: 700; font-size: 20px; line-height: normal; color: #d5d5d6;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, .25), 0 4px 4px rgba(0, 0, 0, .25);
+    white-space: nowrap;
+  }
+  /* dropdown triangle: pseudo-element + rotate(180deg) */
+  .lang::after {
+    content: "";
+    position: absolute; left: 184px; top: -12px;
+    width: 0; height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 12px solid #d5d5d6;
+    transform: rotate(180deg);
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, .25));
+    transition: transform .25s;
+  }
+  .lang:hover::after { transform: rotate(0deg); }
+
+  /* "BEST PLAYERS IN THE WORLD" badge */
+  .badge {
+    left: 443px; top: 243px; width: 604px; height: 103px;
+    background: var(--yellow);
+    border: 11px solid var(--grey);
+    border-radius: 50px;
+  }
+  .badge-text {
+    left: 492px; top: 273px; width: 506px; height: 42px;
+    font-weight: 700; font-size: 36px; line-height: normal; color: #000;
+    text-shadow: 0 4px 4px #0047ff;
+    white-space: nowrap;
+  }
+  .badge-logo { left: 1096px; top: 270px; width: 50px; height: 50px; background-image: var(--img-badge); }
+
+  /* ---------- PLAYER CARDS ---------- */
+  .card {
+    top: 478px; width: 361px; height: 420px;
+    background: var(--card);
+    box-shadow: 8px 7px 20px 0 #fff;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 12px 14px 28px 0 #fff; }
+  .card::before {           /* player photo */
+    content: "";
+    position: absolute; left: 0; top: 0; width: 100%; height: 353px;
+    background: var(--photo) center / cover no-repeat;
+  }
+  .card::after {            /* player name */
+    content: attr(data-name);
+    position: absolute; left: 0; right: 0; top: 368px;
+    text-align: center;
+    font-weight: 600; font-size: 36px; line-height: 40px; color: #000;
+    text-shadow: 0 4px 4px var(--amber);
+  }
+  .card.c1 { left: 52px;   --photo: var(--img-simple); }
+  .card.c2 { left: 540px;  --photo: var(--img-zywoo); }
+  .card.c3 { left: 1027px; --photo: var(--img-niko); }
+
+  /* ---------- INFORMATION ---------- */
+  .info-bg {
+    left: 0; top: 1021px; width: 1440px; height: 1042px;
+    background: #000;
+    box-shadow: 0 4px 18.6px #000;
+  }
+  .info-title {
+    left: 0; top: 1082px; width: 1440px; text-align: center;
+    font-weight: 600; font-size: 64px; line-height: 64px; color: var(--grey);
+    text-shadow: 0 4px 4px #fff;
+  }
+  .news-img { left: 58px; top: 1204px; width: 571px; height: 305px; background-image: var(--img-news); }
+
+  .news-text {
+    width: 663px; height: 140px;
+    font-weight: 600; font-size: 27px; line-height: normal; color: #fff;
+  }
+  .t1 { left: 716px; top: 1204px; }
+  .t2 { left: 58px;  top: 1678px; }
+
+  /* Read more buttons */
+  .btn {
+    width: 278px; height: 61px;
+    background: var(--amber);
+    box-shadow: 0 7px 12.8px #fff;
+    text-align: center;
+    font-weight: 700; font-size: 27px; line-height: 61px;
+    text-shadow: 0 4px 4px rgba(4, 4, 4, .81);
+    cursor: pointer;
+    transition: transform .2s;
+  }
+  .btn:hover  { transform: translateY(-3px); }
+  .btn:active { transform: translateY(2px) scale(.97); }
+  .btn.dark   { background: #535353; color: #fff; left: 716px; top: 1448px; }
+  .btn.dark::before {                      /* yellow layer sitting under the grey one in Figma */
+    content: "";
+    position: absolute; inset: 0;
+    background: var(--amber);
+    box-shadow: 0 7px 12.8px #fff;
+    z-index: -1;
+  }
+  .btn.light  { color: #000; left: 58px; top: 1915px; }
+  /* ---------- FOOTER ---------- */
+  .footer { left: 0; top: 2057px; width: 1440px; height: 158px; background: var(--yellow); }
+  .footer-logo { left: 58px; top: 2108px; width: 101px; height: 55px; background-image: var(--img-footer); }
+  .telegram {
+    left: 1156px; top: 2118px; width: 45px; height: 45px;
+    background: var(--img-telegram) center / contain no-repeat;
+    transition: transform .25s;
+  }
+  .telegram:hover { transform: rotate(-15deg) scale(1.15); }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <!-- hero -->
+    <div class="hero img"></div>
+    <div class="logo img"></div>
+    <div class="play"><span>PLAY FOR FREE</span></div>
+    <p class="monthly">MONTLY PLAYER 28 575 516</p>
+    <p class="lang">SELECT LANGUAGE</p>
+
+    <div class="badge"></div>
+    <p class="badge-text">BEST PLAYERS IN THE WORLD</p>
+    <div class="badge-logo img"></div>
+
+    <!-- players -->
+    <div class="card c1" data-name="SIMPLE"></div>
+    <div class="card c2" data-name="ZYWOO"></div>
+    <div class="card c3" data-name="NIKO"></div>
+
+    <!-- information -->
+    <div class="info-bg"></div>
+    <h2 class="info-title">Information</h2>
+    <div class="news-img img"></div>
+    <p class="news-text t1">Uzbekistan e-sportsmen reached the semi-finals of the world championship in the computer game CS:GO (IESF World Esports Championship 2023). The team went through the group stage without a single defeat, and defeated Hungary in the quarterfinals.</p>
+    <div class="btn dark">Read more</div>
+    <p class="news-text t2">Uzbekistan e-sportsmen reached the semi-finals of the world championship in the computer game CS:GO (IESF World Esports Championship 2023). The team went through the group stage without a single defeat, and defeated Hungary in the quarterfinals.</p>
+    <div class="btn light">Read more</div>
+
+    <!-- footer -->
+    <div class="footer"></div>
+    <div class="footer-logo img"></div>
+    <a class="telegram" href="#" aria-label="Telegram"></a>
+  </div>
+</body>
+</html>
